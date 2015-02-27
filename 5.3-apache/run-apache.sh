@@ -35,8 +35,8 @@ randname() {
         dd count=1 bs=16 2>/dev/null
 }
 
-if [ -n "$ENABLE_APACHE_MODULES" ]; then
-    a2enmod $ENABLE_APACHE_MODULES
+if [ "x" != "x${ENABLE_APACHE_MODULES}" ]; then
+    a2enmod ${ENABLE_APACHE_MODULES}
 fi
 
 /usr/local/bin/init-php.sh
