@@ -39,6 +39,6 @@ if [ -n "$ENABLE_APACHE_MODULES" ]; then
     a2enmod $ENABLE_APACHE_MODULES
 fi
 
-usr/local/bin/init-php.sh
+/usr/local/bin/init-php.sh
 
 run_apache "$@"

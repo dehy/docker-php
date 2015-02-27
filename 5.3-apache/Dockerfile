@@ -1,10 +1,17 @@
 FROM debian:wheezy
 MAINTAINER Arnaud de Mouhy <arnaud@flyingpingu.com>
 
+ADD wheezy-backports.list /etc/apt/sources.list.d/wheezy-backports.list
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y apache2 \
-    libapache2-mod-php5 php5-mysql php5-gd php5-intl
+    libapache2-mod-php5 php5-cli php5-mysql php5-gd \
+    php5-intl php5-curl curl
+    
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
 
 RUN a2enmod php5
 
